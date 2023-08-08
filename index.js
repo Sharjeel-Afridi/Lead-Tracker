@@ -2,25 +2,66 @@ const inputBtn = document.getElementById("input-btn")
 let myLeads = []
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
+const deleteBtn = document.getElementById("delete-btn")
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+const tabBtn = document.getElementById("tab-btn")
 
-inputBtn.addEventListener("click", function() {
-    const inputData = inputEl.value;
-    myLeads.push(inputData)
-    inputEl.value = ""
-    renderLeads()
-})
+if(leadsFromLocalStorage){
+    myLeads = leadsFromLocalStorage
+    render(myLeads)
+}
 
-
-function renderLeads (){
+function render(leads){
     let listItems = ""
-    for (let i = 0; i < myLeads.length; i++){
+    for (let i = 0; i < leads.length; i++){
         listItems += `
         <li> 
-            <a target='_blank' href = '${myLeads[i]}'> 
-                ${myLeads[i]}
+            <a target='_blank' href = '${leads[i]}'> 
+                ${leads[i]}
             </a>
         </li>`
     }
     
     ulEl.innerHTML = listItems
 }
+
+inputEl.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        event.preventDefault()
+        inputBtn.click();
+    }
+  })
+
+inputBtn.addEventListener("click", function() {
+
+    const inputData = inputEl.value;
+    myLeads.push(inputData)
+    inputEl.value = ""
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+
+
+    render(myLeads)
+})
+
+// tabBtn.addEventListener("click", function(){
+//     // Get the current tab's information
+//     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+//     const currentTab = tabs[0];
+    
+//     const tabTitleElement = document.getElementById("tabTitle");
+//     const tabURLElement = document.getElementById("tabURL");
+    
+//     tabTitleElement.textContent = currentTab.title;
+//     tabURLElement.textContent = currentTab.url;
+//     });
+//     render(currentTab)
+
+// })
+
+deleteBtn.addEventListener("dblclick", function(){
+    localStorage.clear()
+    myLeads = []
+    render(myLeads)
+})
+

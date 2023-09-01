@@ -44,20 +44,16 @@ inputBtn.addEventListener("click", function() {
     render(myLeads)
 })
 
-// tabBtn.addEventListener("click", function(){
-//     // Get the current tab's information
-//     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-//     const currentTab = tabs[0];
+tabBtn.addEventListener("click", function(){
+    // Get the current tab's information
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        render(myLeads)
+    });
     
-//     const tabTitleElement = document.getElementById("tabTitle");
-//     const tabURLElement = document.getElementById("tabURL");
-    
-//     tabTitleElement.textContent = currentTab.title;
-//     tabURLElement.textContent = currentTab.url;
-//     });
-//     render(currentTab)
 
-// })
+})
 
 deleteBtn.addEventListener("dblclick", function(){
     localStorage.clear()

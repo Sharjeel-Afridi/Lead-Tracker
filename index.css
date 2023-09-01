@@ -21,7 +21,7 @@ button {
     font-weight: bold;
     letter-spacing: 1.1;
     border: none;
-    
+    cursor: pointer;
 }
 #delete-btn{
     background: #fff;
@@ -30,7 +30,7 @@ button {
     font-weight: bold;
     letter-spacing: 1.1;
     border: 2px solid #5f9341;
-    
+    cursor: pointer;
 }
 
 ul{

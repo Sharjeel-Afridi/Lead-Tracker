@@ -11,7 +11,7 @@ if(leadsFromLocalStorage){
     render(myLeads)
 }
 
-function render(leads){
+const render = leads => {
     let listItems = ""
     for (let i = 0; i < leads.length; i++){
         listItems += `

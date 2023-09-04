@@ -11,7 +11,7 @@ if(leadsFromLocalStorage){
     render(myLeads)
 }
 
-function render(leads){
+const render = leads => {
     let listItems = ""
     for (let i = 0; i < leads.length; i++){
         listItems += `
@@ -25,7 +25,7 @@ function render(leads){
     ulEl.innerHTML = listItems
 }
 
-inputEl.addEventListener("keydown", function(event) {
+inputEl.addEventListener("keydown", (event) => {
 
     if (event.key === "Enter") {
         event.preventDefault()
@@ -33,7 +33,7 @@ inputEl.addEventListener("keydown", function(event) {
     }
   })
 
-inputBtn.addEventListener("click", function() {
+inputBtn.addEventListener("click", () => {
 
     const inputData = inputEl.value;
     myLeads.push(inputData)
@@ -44,7 +44,7 @@ inputBtn.addEventListener("click", function() {
     render(myLeads)
 })
 
-tabBtn.addEventListener("click", function(){
+tabBtn.addEventListener("click", () => {
     // Get the current tab's information
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         myLeads.push(tabs[0].url)
@@ -55,7 +55,7 @@ tabBtn.addEventListener("click", function(){
 
 })
 
-deleteBtn.addEventListener("dblclick", function(){
+deleteBtn.addEventListener("dblclick", () => {
     localStorage.clear()
     myLeads = []
     render(myLeads)

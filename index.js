@@ -33,7 +33,7 @@ inputEl.addEventListener("keydown", function(event) {
     }
   })
 
-inputBtn.addEventListener("click", function() {
+inputBtn.addEventListener("click", () => {
 
     const inputData = inputEl.value;
     myLeads.push(inputData)
